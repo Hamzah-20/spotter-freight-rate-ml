@@ -1,0 +1,3 @@
+,train_missing,train_missing_pct,validation_missing,validation_missing_pct
+market_index,374,0.7791666666666667,249.0,2.075
+weight,300,0.625,165.0,1.375

@@ -1,0 +1,18 @@
+{
+  "training_rows": 48000,
+  "training_start": "2025-01-01",
+  "training_end": "2025-10-31",
+  "validation_rows": 12000,
+  "target_strategy": "75% log1p(rate_per_mile) + 25% raw_rate",
+  "quote_signal_used": false,
+  "transformed_weight": 0.75,
+  "raw_weight": 0.25,
+  "transformed_iterations": 270,
+  "raw_iterations": 867,
+  "calibration": {
+    "transformed_mae": 100.76738700780261,
+    "raw_mae": 104.77433903754294,
+    "blend_mae": 100.50664560870909
+  },
+  "random_seed": 42
+}

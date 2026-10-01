@@ -1,0 +1,40 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# CatBoost temporary files
+catboost_info/
+
+# Local caches
+*.log
+
+# Assessment source data
+data/train_test.csv
+data/validation.csv
+data/validation_predictions_template.csv
+data/december_chart_inputs_original.csv
+
+# Assessment instructions
+freight-rate-ml-assessment.pdf
+ASSESSMENT_README.md
+
+# Reproducible model binaries are generated locally
+artifacts/*.cbm
+
+# Large row-level diagnostic outputs
+reports/oof_residual_analysis.csv
+reports/cross_fitted_training_anomalies.csv
+reports/extreme_target_anomalies.csv
+reports/top_50_residuals.csv

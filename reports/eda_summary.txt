@@ -1,0 +1,79 @@
+Train shape      : (48000, 14)
+Validation shape : (12000, 13)
+
+Train date range : 2025-01-01 -> 2025-10-31
+Validation dates : 2025-11-01 -> 2025-12-31
+Train columns (14):
+load_id, pickup, delivery, pickup_lat, pickup_lon, delivery_lat, delivery_lon, distance, equipment, weight, date, market_index, quote_signal, posted_rate
+
+Validation columns (13):
+load_id, pickup, delivery, pickup_lat, pickup_lon, delivery_lat, delivery_lon, distance, equipment, weight, date, market_index, quote_signal
+
+Target only in train: True
+Feature schemas match: True
+              train_missing  train_missing_pct  validation_missing  validation_missing_pct
+market_index            374           0.779167               249.0                   2.075
+weight                  300           0.625000               165.0                   1.375
+Duplicate train load_id      : 0
+Duplicate validation load_id : 0
+Missing train load_id        : 0
+Missing validation load_id   : 0
+Negative train weights       : 292
+Negative validation weights  : 145
+Zero train weights           : 0
+Zero validation weights      : 0
+
+                count          mean          std          min           1%            5%          25%          50%           75%           95%           99%          max
+distance      48000.0   1135.856654   728.564416     70.00000   121.899000    236.100000    550.40000    953.30000   1645.525000   2562.300000   3029.304000   3439.80000
+weight        47700.0  31028.844004  9391.440620 -47500.00000  9801.960000  17490.950000  25800.00000  31436.50000  37018.000000  44934.200000  47500.000000  47500.00000
+market_index  47626.0      1.083387     0.168091      0.67639     0.782887      0.836265      0.94967      1.05580      1.219590      1.365957      1.407185      1.46778
+quote_signal  48000.0      2.062468     0.291391      0.69228     1.304657      1.606055      1.89103      2.05575      2.221685      2.550773      2.883951      3.61035
+posted_rate   48000.0   2373.980682  1486.493245     57.22000   327.168800    599.738500   1251.55500   2030.76000   3330.750000   4953.766500   5972.834000  25533.00000
+Target minimum : $57.22
+Target maximum : $25,533.00
+Target mean    : $2,373.98
+Target median  : $2,030.76
+Target P01     : $327.17
+Target P99     : $5,972.83
+pickup       | train unique= 64 | validation unique= 72
+delivery     | train unique= 64 | validation unique= 72
+equipment    | train unique=  3 | validation unique=  3
+Unique train routes: 4014
+pickup: 8 unseen categories
+  Allentown, Charlotte, Chicago, Jackson, Knoxville, Laredo, Norfolk, San Diego
+delivery: 8 unseen categories
+  Allentown, Charlotte, Chicago, Jackson, Knoxville, Laredo, Norfolk, San Diego
+equipment: 0 unseen categories
+  month  count        mean   median         std
+2025-01   4918 2255.967048 1915.200 1454.274952
+2025-02   4337 2273.804801 1994.250 1317.077105
+2025-03   5036 2372.268092 2022.920 1462.531615
+2025-04   4819 2372.162308 2044.240 1463.102457
+2025-05   4913 2421.776342 2065.510 1486.071436
+2025-06   4783 2497.030115 2120.220 1606.707302
+2025-07   4912 2415.162030 2059.145 1504.943296
+2025-08   4759 2338.407661 2015.730 1474.979672
+2025-09   4670 2406.374013 2057.130 1523.483983
+2025-10   4853 2379.051374 2035.900 1528.714038
+2025-01: -0.5999
+2025-02: -0.6388
+2025-03: -0.5952
+2025-04: 0.6128
+2025-05: 0.6238
+2025-06: -0.5801
+2025-07: 0.6030
+2025-08: 0.0148
+2025-09: -0.5913
+2025-10: 0.6053
+equipment  count  percentage
+  Dry Van  27202   56.670833
+   Reefer  12045   25.093750
+  Flatbed   8753   18.235417
+Created:
+  reports/eda_summary.txt
+  reports/missing_values.csv
+  reports/numeric_summary.csv
+  reports/unseen_categories.csv
+  reports/monthly_target_summary.csv
+  reports/quote_signal_monthly_correlation.csv
+  reports/equipment_summary.csv
