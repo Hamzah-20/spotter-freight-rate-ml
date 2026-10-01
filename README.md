@@ -123,7 +123,7 @@ As a sanity check:
 - historical Lexington → Fort Wayne Dry Van median rate: approximately $808
 - comparable 300–420 mile Dry Van median rate: approximately $844
 
-## Repository Structure
+## Expected Local Project Structure
 
 ```text
 .
