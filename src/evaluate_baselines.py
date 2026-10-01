@@ -191,9 +191,8 @@ def main() -> None:
 
         y_valid = valid[TARGET].to_numpy()
 
-        # --------------------------------------------------------------
-        # Business baseline
-        # --------------------------------------------------------------
+        #  ----------------------------------  Business baseline  ----------------------------------
+
         baseline_predictions = rate_per_mile_baseline(
             train,
             valid,
@@ -218,9 +217,8 @@ def main() -> None:
             }
         )
 
-        # --------------------------------------------------------------
-        # CatBoost WITHOUT quote_signal
-        # --------------------------------------------------------------
+        #  ----------------------------------  CatBoost WITHOUT quote_signal  ----------------------------------
+
         no_quote_predictions = fit_catboost(
             train,
             valid,
@@ -246,9 +244,8 @@ def main() -> None:
             }
         )
 
-        # --------------------------------------------------------------
-        # CatBoost WITH quote_signal
-        # --------------------------------------------------------------
+        #  ----------------------------------  CatBoost WITH quote_signal  ----------------------------------
+
         quote_predictions = fit_catboost(
             train,
             valid,

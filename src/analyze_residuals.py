@@ -169,9 +169,8 @@ def main() -> None:
         ignore_index=True,
     )
 
-    # ------------------------------------------------------------------
-    # Robust anomaly score using log-ratio residuals
-    # ------------------------------------------------------------------
+    #  ---------------------------------- Robust anomaly score using log-ratio residuals  ----------------------------------
+
     median_log_ratio = oof["log_ratio"].median()
 
     mad = np.median(
@@ -199,7 +198,6 @@ def main() -> None:
         oof["robust_z"].abs()
     )
 
-    # Conservative anomaly rule.
     oof["extreme_anomaly"] = (
         (oof["abs_robust_z"] >= 6.0)
         & (
@@ -286,10 +284,9 @@ def main() -> None:
         f"({anomaly_pct:.2f}%)"
     )
 
-    # ------------------------------------------------------------------
-    # Diagnostic metrics with and without extreme rows.
-    # This is analysis only. We are NOT deleting them yet.
-    # ------------------------------------------------------------------
+    #  ----------------------------------  Diagnostic metrics with and without extreme rows  ----------------------------------
+    #  ---------------------------------- This is analysis only. We are NOT deleting them yet.  ----------------------------------
+
     normal = oof[
         ~oof["extreme_anomaly"]
     ]
@@ -343,9 +340,8 @@ def main() -> None:
         monthly.round(2).to_string()
     )
 
-    # ------------------------------------------------------------------
-    # Largest residuals for manual inspection
-    # ------------------------------------------------------------------
+    #  ----------------------------------  Largest residuals for manual inspection  ----------------------------------
+
     columns = [
         "load_id",
         "fold",

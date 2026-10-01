@@ -22,29 +22,24 @@ def prepare_features(
 
     data["date"] = pd.to_datetime(data["date"], errors="raise")
 
-    # ------------------------------------------------------------------
-    # Data-quality features
-    # ------------------------------------------------------------------
+    # ----------------------------------  Data-quality features ----------------------------------
+    
     data["weight_missing"] = data["weight"].isna().astype(int)
     data["weight_was_negative"] = (data["weight"] < 0).fillna(False).astype(int)
 
-    # Negative freight weights are physically invalid.
-    # Preserve that information in a flag, then use the magnitude.
     data["weight"] = data["weight"].abs()
 
     data["market_index_missing"] = data["market_index"].isna().astype(int)
 
-    # ------------------------------------------------------------------
-    # Route / categorical features
-    # ------------------------------------------------------------------
+    # ----------------------------------  Route / categorical features  ----------------------------------
+
     for column in ["pickup", "delivery", "equipment"]:
         data[column] = data[column].fillna("__MISSING__").astype(str)
 
     data["lane"] = data["pickup"] + " -> " + data["delivery"]
 
-    # ------------------------------------------------------------------
-    # Geographic features
-    # ------------------------------------------------------------------
+    #  ---------------------------------- Geographic features  ----------------------------------
+
     data["lat_delta"] = data["delivery_lat"] - data["pickup_lat"]
     data["lon_delta"] = data["delivery_lon"] - data["pickup_lon"]
 
@@ -52,9 +47,8 @@ def prepare_features(
         data["lat_delta"] ** 2 + data["lon_delta"] ** 2
     )
 
-    # ------------------------------------------------------------------
-    # Time features
-    # ------------------------------------------------------------------
+    #  ---------------------------------- Time features  ----------------------------------
+
     data["year"] = data["date"].dt.year
     data["month"] = data["date"].dt.month
     data["day"] = data["date"].dt.day
@@ -71,9 +65,8 @@ def prepare_features(
     data["doy_sin"] = np.sin(2 * np.pi * data["day_of_year"] / 365.25)
     data["doy_cos"] = np.cos(2 * np.pi * data["day_of_year"] / 365.25)
 
-    # ------------------------------------------------------------------
-    # Freight-specific numeric features
-    # ------------------------------------------------------------------
+    #  ---------------------------------- Freight-specific numeric features  ----------------------------------
+
     data["distance_log"] = np.log1p(data["distance"].clip(lower=0))
     data["weight_log"] = np.log1p(data["weight"].clip(lower=0))
 

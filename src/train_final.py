@@ -164,9 +164,8 @@ def calibrate_iterations(
         X_train
     )
 
-    # --------------------------------------------------------------
-    # Transformed model calibration
-    # --------------------------------------------------------------
+    #  ---------------------------------- Transformed model calibration  ----------------------------------
+
     print()
     print(
         "Calibrating transformed model..."
@@ -209,9 +208,8 @@ def calibrate_iterations(
         )
     )
 
-    # --------------------------------------------------------------
-    # Raw-rate model calibration
-    # --------------------------------------------------------------
+    #  ---------------------------------- Raw-rate model calibration  ----------------------------------
+
     print(
         "Calibrating raw-rate model..."
     )
@@ -360,12 +358,8 @@ def prepare_december_frame(
         .map(coordinates["lon"])
     )
 
-    # These fields are not supplied in december_chart_inputs.csv.
-    # Do not infer them from validation data; represent them as
-    # genuinely unavailable and let CatBoost handle the missing value.
     frame["market_index"] = np.nan
 
-    # quote_signal was excluded from the selected production model.
     frame["quote_signal"] = np.nan
 
     return frame
@@ -445,9 +439,8 @@ def main() -> None:
         f"Validation rows : {len(validation):,}"
     )
 
-    # --------------------------------------------------------------
-    # 1. Calibrate final training iterations
-    # --------------------------------------------------------------
+    #  ---------------------------------- 1. Calibrate final training iterations  ----------------------------------
+
     print()
     print("=" * 90)
     print("1. ITERATION CALIBRATION")
@@ -485,9 +478,7 @@ def main() -> None:
         f"${calibration_metrics['blend_mae']:,.2f}"
     )
 
-    # --------------------------------------------------------------
-    # 2. Prepare all development and validation features
-    # --------------------------------------------------------------
+    #  ---------------------------------- 2. Prepare all development and validation features  ----------------------------------
     print()
     print("=" * 90)
     print("2. FULL-DATA TRAINING")
@@ -511,9 +502,8 @@ def main() -> None:
         X_full
     )
 
-    # --------------------------------------------------------------
-    # 3. Fit transformed model on ALL Jan-Oct rows
-    # --------------------------------------------------------------
+    #  ---------------------------------- 3. Fit transformed model on ALL Jan-Oct rows  ----------------------------------
+
     print(
         "Training final transformed model..."
     )
@@ -540,9 +530,8 @@ def main() -> None:
         )
     )
 
-    # --------------------------------------------------------------
-    # 4. Fit raw-rate model on ALL Jan-Oct rows
-    # --------------------------------------------------------------
+    #  ---------------------------------- 4. Fit raw-rate model on ALL Jan-Oct rows  ----------------------------------
+
     print(
         "Training final raw-rate model..."
     )
@@ -567,9 +556,8 @@ def main() -> None:
         1.0,
     )
 
-    # --------------------------------------------------------------
-    # 5. Final ensemble
-    # --------------------------------------------------------------
+    #  ---------------------------------- 5. Final ensemble  ----------------------------------
+
     final_validation = (
         TRANSFORMED_WEIGHT
         * transformed_validation
@@ -582,9 +570,8 @@ def main() -> None:
         1.0,
     )
 
-    # --------------------------------------------------------------
-    # 6. Fill official prediction template
-    # --------------------------------------------------------------
+    #  ---------------------------------- 6. Fill official prediction template  ----------------------------------
+
     print()
     print("=" * 90)
     print("3. VALIDATION PREDICTIONS")
@@ -665,9 +652,8 @@ def main() -> None:
         f"${output['predicted_rate'].median():,.2f}"
     )
 
-    # --------------------------------------------------------------
-    # 7. December fixed-scenario predictions
-    # --------------------------------------------------------------
+    #  ---------------------------------- 7. December fixed-scenario predictions  ----------------------------------
+
     print()
     print("=" * 90)
     print("4. DECEMBER CHART PREDICTIONS")
@@ -752,9 +738,8 @@ def main() -> None:
         f"${final_december.max():,.2f}"
     )
 
-    # --------------------------------------------------------------
-    # 8. Save models and metadata
-    # --------------------------------------------------------------
+    #  ---------------------------------- 8. Save models and metadata  ----------------------------------
+
     print()
     print("=" * 90)
     print("5. SAVING ARTIFACTS")
